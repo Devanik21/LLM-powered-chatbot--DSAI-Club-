@@ -243,32 +243,45 @@ def generate_ai_response(prompt, files_content, model_name, api_key):
     try:
         genai.configure(api_key=api_key)
         model = genai.GenerativeModel(model_name)
-        
-        # Combine file contents with truncation to avoid token limits
+
+        # Estimate max char usage (~4 chars per token)
+        max_total_chars = 32768  # ≈ 8192 tokens
+        reserved_for_prompt_and_output = 5000  # buffer for prompt + response
+        available_chars = max_total_chars - reserved_for_prompt_and_output
+
+        # Combine file contents safely within character limit
         combined_content = ""
+        current_length = 0
         for filename, content in files_content.items():
-            file_content = content[:7500]  # Limit each file content
-            combined_content += f"[File: {filename}]\n{file_content}\n\n"
-        
-        # Generate response with clear instructions
-        response = model.generate_content(
-            f"""Files content:
+            content = content.strip()
+            truncated = content[:7500]  # limit per file
+            if current_length + len(truncated) > available_chars:
+                break
+            combined_content += f"[File: {filename}]\n{truncated}\n\n"
+            current_length += len(truncated)
+
+        # Final prompt with clear, structured instructions
+        full_prompt = f"""Files content:
 {combined_content}
 
 User question: {prompt}
 
 IMPORTANT INSTRUCTIONS:
-1. Base your response ONLY on the files content provided above
-2. Reference specific file names when providing information
-3. If the information is not in the files, clearly state that
-4. Format your response with markdown for better readability
-5. DO NOT reference any previous conversations or files not listed above
-6. Be concise but thorough in your answers"""
-        )
-        
+1. Base your response ONLY on the files content provided above.
+2. Reference specific file names when providing information.
+3. If the information is not in the files, clearly state that.
+4. Format your response with markdown for better readability.
+5. DO NOT reference any previous conversations or files not listed above.
+6. Be concise but thorough in your answers.
+"""
+
+        # Generate and return the LLM response
+        response = model.generate_content(full_prompt)
         return response.text
+
     except Exception as e:
         return f"Error generating response: {str(e)}"
+
 
 # Sidebar configuration
 with st.sidebar:

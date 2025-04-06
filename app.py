@@ -26,7 +26,7 @@ st.set_page_config(
 st.markdown("""
 <style>
     .main {
-        background-color: #f8f9fa;
+        background-color: #032c54;
     }
     .stApp {
         max-width: 1200px;
@@ -40,7 +40,7 @@ st.markdown("""
         align-items: flex-start;
     }
     .chat-message.user {
-        background-color: #e9ecef;
+        background-color: #032c54;
     }
     .chat-message.bot {
         background-color: #dce8f7;

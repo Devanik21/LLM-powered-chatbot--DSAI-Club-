@@ -43,7 +43,7 @@ st.markdown("""
         background-color: #032c54;
     }
     .chat-message.bot {
-        background-color: #dce8f7;
+        background-color: #380b42;
     }
     .chat-message .avatar {
         width: 40px;
@@ -407,8 +407,6 @@ if st.session_state.current_tab == "Chat":
         """, unsafe_allow_html=True)
     
     # Chat interface
-    import html  # Put this at the top of your file
-
     st.markdown("### 💬 Chat with your documents")
     
     # Display chat history
@@ -417,19 +415,26 @@ if st.session_state.current_tab == "Chat":
         for message in st.session_state.chat_history:
             if message["role"] == "user":
                 st.markdown(f"""
-                <div class="chat-message user" style="background-color:#e6f7ff; padding:10px; border-radius:10px; margin-bottom:10px;">
-                    <b>You:</b><br>{message['content']}
+                <div class="chat-message user">
+                    <img src="https://avatars.githubusercontent.com/u/0" class="avatar">
+                    <div class="message">
+                        <b>You:</b><br>{message['content']}
+                    </div>
                 </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div class="chat-message bot" style="background-color:#f0f0f0; padding:10px; border-radius:10px; margin-bottom:10px;">
-                    <b>AI Assistant:</b><br>{message['content']}
+                <div class="chat-message bot">
+                    <img src="https://avatars.githubusercontent.com/u/1" class="avatar">
+                    <div class="message">
+                        <b>AI Assistant:</b><br>{message['content']}
+                        <div class="feedback-buttons">
+                            <button>👍</button>
+                            <button>👎</button>
+                        </div>
+                    </div>
                 </div>
                 """, unsafe_allow_html=True)
-
-
-
     
     # User input
     st.markdown("#### Ask a question")

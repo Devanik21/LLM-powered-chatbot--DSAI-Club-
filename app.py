@@ -417,22 +417,17 @@ if st.session_state.current_tab == "Chat":
         for message in st.session_state.chat_history:
             if message["role"] == "user":
                 st.markdown(f"""
-                <div class="chat-message user">
-                    <img src="https://avatars.githubusercontent.com/u/0" class="avatar">
-                    <div class="message">
-                        <b>You:</b><br>{html.escape(message['content'])}
-                    </div>
+                <div class="chat-message user" style="background-color:#e6f7ff; padding:10px; border-radius:10px; margin-bottom:10px;">
+                    <b>You:</b><br>{message['content']}
                 </div>
                 """, unsafe_allow_html=True)
             else:
                 st.markdown(f"""
-                <div class="chat-message bot">
-                    <img src="https://avatars.githubusercontent.com/u/1" class="avatar">
-                    <div class="message">
-                        <b>AI Assistant:</b><br>{html.escape(message['content'])}
-                    </div>
+                <div class="chat-message bot" style="background-color:#f0f0f0; padding:10px; border-radius:10px; margin-bottom:10px;">
+                    <b>AI Assistant:</b><br>{message['content']}
                 </div>
                 """, unsafe_allow_html=True)
+
 
 
     

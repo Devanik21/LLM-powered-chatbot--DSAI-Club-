@@ -43,7 +43,7 @@ st.markdown("""
         background-color: #032c54;
     }
     .chat-message.bot {
-        background-color: #dce8f7;
+        background-color: #420a4f;
     }
     .chat-message .avatar {
         width: 40px;

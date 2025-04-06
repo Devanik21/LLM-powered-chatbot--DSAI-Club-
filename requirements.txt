@@ -8,3 +8,4 @@ markdown
 beautifulsoup4 
 ebooklib 
 python-pptx
+matplotlib

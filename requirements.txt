@@ -9,3 +9,4 @@ beautifulsoup4
 ebooklib 
 python-pptx
 matplotlib
+seaborn

@@ -21,7 +21,7 @@ from PIL import Image
 
 # Set modern theme with custom styling
 st.set_page_config(
-    page_title="📑 AI Docs", 
+    page_title=" AI Docs", 
     page_icon="📝", 
     layout="wide",
     initial_sidebar_state="expanded"

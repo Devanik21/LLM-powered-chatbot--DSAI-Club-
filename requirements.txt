@@ -1,0 +1,10 @@
+streamlit 
+google-generativeai
+pandas 
+python-docx 
+PyPDF2 
+openpyxl
+markdown 
+beautifulsoup4 
+ebooklib 
+python-pptx

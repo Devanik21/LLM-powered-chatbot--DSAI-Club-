@@ -401,8 +401,8 @@ if st.session_state.current_tab == "Chat":
         file_count = len(st.session_state.files_content)
         st.markdown(f"""
         <div class="file-list">
-            <h3>📚 {file_count} Document{'' if file_count == 1 else 's'} Processed</h3>
-            <p>You can now ask questions about your documents.</p>
+            <h3 style="color: #1E90FF;">📚 {file_count} Document{'' if file_count == 1 else 's'} Processed</h3>
+             <p style="color: #1E90FF;"You can now ask questions about your documents.</p>
         </div>
         """, unsafe_allow_html=True)
     

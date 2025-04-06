@@ -428,13 +428,10 @@ if st.session_state.current_tab == "Chat":
                     <img src="https://avatars.githubusercontent.com/u/1" class="avatar">
                     <div class="message">
                         <b>AI Assistant:</b><br>{message['content']}
-                        <div class="feedback-buttons">
-                            <button>👍</button>
-                            <button>👎</button>
-                        </div>
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
+
     
     # User input
     st.markdown("#### Ask a question")

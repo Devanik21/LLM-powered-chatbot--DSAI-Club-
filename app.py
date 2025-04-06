@@ -407,6 +407,8 @@ if st.session_state.current_tab == "Chat":
         """, unsafe_allow_html=True)
     
     # Chat interface
+    import html  # Put this at the top of your file
+
     st.markdown("### 💬 Chat with your documents")
     
     # Display chat history
@@ -418,7 +420,7 @@ if st.session_state.current_tab == "Chat":
                 <div class="chat-message user">
                     <img src="https://avatars.githubusercontent.com/u/0" class="avatar">
                     <div class="message">
-                        <b>You:</b><br>{message['content']}
+                        <b>You:</b><br>{html.escape(message['content'])}
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
@@ -427,10 +429,11 @@ if st.session_state.current_tab == "Chat":
                 <div class="chat-message bot">
                     <img src="https://avatars.githubusercontent.com/u/1" class="avatar">
                     <div class="message">
-                        <b>AI Assistant:</b><br>{message['content']}
+                        <b>AI Assistant:</b><br>{html.escape(message['content'])}
                     </div>
                 </div>
                 """, unsafe_allow_html=True)
+
 
     
     # User input
